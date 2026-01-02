@@ -1,10 +1,11 @@
 import ProductCard from '@/components/frontend/product-card';
 import FrontendLayout from '@/layouts/frontend-layout';
+import { Paginated } from '@/types/pagination';
 import { Product } from '@/types/product';
-import { Head } from '@inertiajs/react';
+import { Head, InfiniteScroll } from '@inertiajs/react';
 
 interface Props {
-    products: Product[];
+    products: Paginated<Product>;
 }
 
 export default function Home({ products }: Props) {
@@ -28,11 +29,13 @@ export default function Home({ products }: Props) {
             <section className="mx-auto max-w-7xl px-6 py-12">
                 <h2 className="mb-6 text-2xl font-semibold">Latest Products</h2>
 
-                <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-                    {products.map((product) => (
-                        <ProductCard key={product.id} product={product} />
-                    ))}
-                </div>
+                <InfiniteScroll data="products">
+                    <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+                        {products.data.map((product) => (
+                            <ProductCard key={product.id} product={product} />
+                        ))}
+                    </div>
+                </InfiniteScroll>
             </section>
         </FrontendLayout>
     );

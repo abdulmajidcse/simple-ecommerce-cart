@@ -13,7 +13,7 @@ class PageController extends Controller
     {
         return Inertia::render('home', [
             'canRegister' => Features::enabled(Features::registration()),
-            'products' => Product::latest()->take(8)->get(),
+            'products' => Inertia::scroll(fn() => Product::latest()->paginate(4)),
         ]);
     }
 
