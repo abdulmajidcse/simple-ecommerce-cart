@@ -1,6 +1,12 @@
 import FrontendLayout from '@/layouts/frontend-layout';
 import { Product } from '@/types/product';
-import { Head, Link } from '@inertiajs/react';
+import { Head, Link, router } from '@inertiajs/react';
+
+function addToCart(productId: number) {
+    router.post(`/carts/${productId}`, {
+        quantity: 1,
+    });
+}
 
 interface Props {
     product: Product;
@@ -14,7 +20,7 @@ export default function ProductShow({ product }: Props) {
             <div className="mx-auto max-w-7xl px-6 py-12">
                 <div className="grid grid-cols-1 gap-10 md:grid-cols-2">
                     {/* Image Placeholder */}
-                    <div className="flex items-center justify-center rounded-lg bg-slate-200 mb-3">
+                    <div className="mb-3 flex items-center justify-center rounded-lg bg-slate-200">
                         <div className="mb-3 h-40 rounded bg-slate-200" />
                     </div>
 
@@ -34,10 +40,13 @@ export default function ProductShow({ product }: Props) {
 
                         <div className="mt-6">
                             <button
-                                className="rounded bg-slate-800 px-6 py-3 text-white transition hover:bg-slate-700 disabled:opacity-50"
+                                onClick={() => addToCart(product.id)}
+                                className="cursor-pointer rounded bg-slate-800 px-6 py-3 text-white transition hover:bg-slate-700 disabled:opacity-50"
                                 disabled={product.stock_quantity === 0}
                             >
-                                Add to Cart
+                                {product.stock_quantity === 0
+                                    ? 'Out of Stock'
+                                    : 'Add to Cart'}
                             </button>
                         </div>
 

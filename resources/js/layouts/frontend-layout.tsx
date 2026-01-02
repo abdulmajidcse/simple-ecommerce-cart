@@ -1,5 +1,6 @@
 import Footer from '@/components/frontend/footer';
 import Header from '@/components/frontend/header';
+import useFlashToast from '@/hooks/useFlashToast';
 import { ReactNode } from 'react';
 
 interface Props {
@@ -7,6 +8,8 @@ interface Props {
 }
 
 export default function FrontendLayout({ children }: Props) {
+    useFlashToast();
+
     return (
         <div className="flex min-h-screen flex-col">
             <Header />
