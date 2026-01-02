@@ -13,7 +13,7 @@ import {
 import { dashboard } from '@/routes';
 import { type NavItem } from '@/types';
 import { Link } from '@inertiajs/react';
-import { LayoutGrid, AlignVerticalDistributeCenter } from 'lucide-react';
+import { LayoutGrid, AlignVerticalDistributeCenter, ShoppingBag, ShoppingBasket } from 'lucide-react';
 import AppLogo from './app-logo';
 
 const mainNavItems: NavItem[] = [
@@ -26,6 +26,16 @@ const mainNavItems: NavItem[] = [
         title: 'Products',
         href: '/admin/products',
         icon: AlignVerticalDistributeCenter,
+    },
+    {
+        title: 'All Orders',
+        href: '/admin/orders',
+        icon: ShoppingBasket,
+    },
+    {
+        title: 'My Orders',
+        href: '/orders',
+        icon: ShoppingBag,
     },
 ];
 
