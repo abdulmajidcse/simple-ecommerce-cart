@@ -13,7 +13,7 @@ class OrderController extends Controller
     {
         return Inertia::render('orders/index', [
             'title' => 'My Orders',
-            'orders' => Order::where('user_id', $request->user()->id)
+            'orders' => Order::with('user')->where('user_id', $request->user()->id)
                 ->latest()
                 ->paginate(10),
         ]);
@@ -24,7 +24,7 @@ class OrderController extends Controller
         abort_if($order->user_id !== Auth::id(), 403);
 
         return Inertia::render('orders/show', [
-            'order' => $order->load('items.product'),
+            'order' => $order->load('items.product', 'user'),
         ]);
     }
 }

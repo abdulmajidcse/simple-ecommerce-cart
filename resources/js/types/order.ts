@@ -1,3 +1,4 @@
+import { User } from '.';
 import { Product } from './product';
 
 export interface OrderItem {
@@ -12,4 +13,5 @@ export interface Order {
     total_amount: number;
     created_at: string;
     items: OrderItem[];
+    user: User;
 }

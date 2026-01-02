@@ -20,6 +20,7 @@ export default function OrdersIndex({ title, orders }: Props) {
                     <thead className="bg-gray-100 dark:bg-gray-600">
                         <tr>
                             <th className="border p-2 text-left">Order ID</th>
+                            <th className="border p-2 text-left">Customer</th>
                             <th className="border p-2 text-left">Total</th>
                             <th className="border p-2 text-left">Date</th>
                             <th className="border p-2">Action</th>
@@ -30,6 +31,7 @@ export default function OrdersIndex({ title, orders }: Props) {
                         {orders.data.map((order) => (
                             <tr key={order.id}>
                                 <td className="border p-2">#{order.id}</td>
+                                <td className="border p-2">{order.user.name}</td>
                                 <td className="border p-2">
                                     ${order.total_amount}
                                 </td>

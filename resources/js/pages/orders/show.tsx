@@ -17,6 +17,7 @@ export default function OrderShow({ order }: Props) {
                 </div>
 
                 <div className="rounded border p-4">
+                    <h2 className='border-b mb-3'>{order.user.name}</h2>
                     <p>
                         <strong>Date:</strong>{' '}
                         {new Date(order.created_at).toDateString()}

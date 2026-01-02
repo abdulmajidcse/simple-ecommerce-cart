@@ -13,14 +13,14 @@ class AdminOrderController extends Controller
     {
         return Inertia::render('orders/index', [
             'title' => 'All Orders',
-            'orders' => Order::latest()->paginate(10),
+            'orders' => Order::with('user')->latest()->paginate(10),
         ]);
     }
 
     public function show(Order $order)
     {
         return Inertia::render('orders/show', [
-            'order' => $order->load('items.product'),
+            'order' => $order->load('items.product', 'user'),
         ]);
     }
 }
