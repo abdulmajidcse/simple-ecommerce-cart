@@ -3,7 +3,7 @@ import { Product } from '@/types/product';
 import { Head, Link, router } from '@inertiajs/react';
 
 function addToCart(productId: number) {
-    router.post(`/carts/${productId}`, {
+    router.post(`/cart/${productId}`, {
         quantity: 1,
     });
 }
