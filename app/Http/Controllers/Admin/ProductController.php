@@ -1,23 +1,24 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
-use App\Models\Product;
 use Inertia\Inertia;
+use App\Models\Product;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class ProductController extends Controller
 {
     public function index()
     {
-        return Inertia::render('Products/Index', [
+        return Inertia::render('products/index', [
             'products' => Product::latest()->paginate(10)
         ]);
     }
 
     public function create()
     {
-        return Inertia::render('Products/Create');
+        return Inertia::render('products/create');
     }
 
     public function store(Request $request)
@@ -36,7 +37,7 @@ class ProductController extends Controller
 
     public function edit(Product $product)
     {
-        return Inertia::render('Products/Edit', [
+        return Inertia::render('products/edit', [
             'product' => $product
         ]);
     }
